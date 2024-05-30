@@ -1,9 +1,6 @@
 package io.github.shams66789.instashorts.screen
 
 import android.content.Intent
-import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,14 +15,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.Feed
 import androidx.compose.material.icons.automirrored.outlined.HelpCenter
-import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.automirrored.outlined.HelpOutline
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.outlined.Feed
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -42,6 +39,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -71,116 +69,58 @@ fun HomeScreen(viewModel: GetNewsViewModel) {
                 Column(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .width(200.dp)
-                        .padding(16.dp)
+                        .width(240.dp)
+                        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                 ) {
+                    // Header with back button and "Options" text
                     Row(
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .padding(bottom = 24.dp, start = 4.dp, end = 8.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            imageVector = Icons.Outlined.Settings,
-                            contentDescription = "Settings",
+                            imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                            contentDescription = "Back",
                             modifier = Modifier
-                                .size(20.dp),
+                                .size(24.dp)
+                                .clickable {
+                                    scope.launch { drawerState.close() }
+                                }
                         )
                         Text(
-                            text = "Settings",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                                .clickable {
-                                    // Handle menu item click
-                                    scope.launch { drawerState.close() }
-                                },
-                            style = TextStyle(fontSize = 20.sp),
-                            fontFamily = InterMedium
+                            text = "Options",
+                            style = TextStyle(
+                                fontSize = 20.sp,
+                                fontFamily = InterSemiBold
+                            ),
+                            modifier = Modifier.padding(start = 12.dp)
                         )
-                        Spacer(modifier = Modifier.size(20.dp)) // Adjust spacing as needed
+                        Spacer(modifier = Modifier.size(24.dp))
                     }
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Info,
-                            contentDescription = "About us",
-                            modifier = Modifier
-                                .size(20.dp),
-                        )
-                        Text(
-                            text = "About Us",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                                .clickable {
-                                    // Handle menu item click
-                                    scope.launch { drawerState.close() }
-                                },
-                            style = TextStyle(fontSize = 20.sp),
-                            fontFamily = InterMedium
-                        )
-                        Spacer(modifier = Modifier.size(20.dp)) // Adjust spacing as needed
-                    }
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Outlined.Feed,
-                            contentDescription = "Privacy Policy",
-                            modifier = Modifier
-                                .size(20.dp),
-                        )
-                        Text(
-                            text = "Privacy Policy",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                                .clickable {
-                                    // Handle menu item click
-                                    scope.launch { drawerState.close() }
-                                },
-                            style = TextStyle(fontSize = 20.sp),
-                            fontFamily = InterMedium
-                        )
-                        Spacer(modifier = Modifier.size(20.dp)) // Adjust spacing as needed
-                    }
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Outlined.HelpCenter,
-                            contentDescription = "Help Center",
-                            modifier = Modifier
-                                .size(20.dp),
-                        )
-                        Text(
-                            text = "Help Center",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                                .clickable {
-                                    // Handle menu item click
-                                    scope.launch { drawerState.close() }
-                                },
-                            style = TextStyle(fontSize = 20.sp),
-                            fontFamily = InterMedium
-                        )
-                        Spacer(modifier = Modifier.size(20.dp)) // Adjust spacing as needed
-                    }
+                    // Menu items
+                    MenuItem(
+                        icon = Icons.Outlined.Settings,
+                        text = "Settings",
+                        onClick = { scope.launch { drawerState.close() } }
+                    )
+                    MenuItem(
+                        icon = Icons.Outlined.Info,
+                        text = "About Us",
+                        onClick = { scope.launch { drawerState.close() } }
+                    )
+                    MenuItem(
+                        icon = Icons.AutoMirrored.Outlined.Feed,
+                        text = "Privacy Policy",
+                        onClick = { scope.launch { drawerState.close() } }
+                    )
+                    MenuItem(
+                        icon = Icons.AutoMirrored.Outlined.HelpOutline,
+                        text = "Help Center",
+                        onClick = { scope.launch { drawerState.close() } }
+                    )
                 }
             }
         },
@@ -306,6 +246,29 @@ fun OpenLinkButton(articleUrl: String) {
             color = Color.White,
             fontFamily = InterRegular,
             style = TextStyle(fontSize = 14.sp)
+        )
+    }
+}
+
+@Composable
+fun MenuItem(icon: ImageVector, text: String, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .clickable(onClick = onClick),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = text,
+            modifier = Modifier.size(22.dp)
+        )
+        Text(
+            text = text,
+            modifier = Modifier.padding(start = 12.dp),
+            style = TextStyle(fontSize = 18.sp, fontFamily = InterMedium)
         )
     }
 }
