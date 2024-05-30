@@ -12,17 +12,15 @@ Stay informed effortlessly with InstaShorts, where global news is just a tap awa
 
 ## Screenshots
 
-<img src="Screenshots/SplashScreen.jpg" alt="Screenshot 1" width="200"/>
-<img src="Screenshots/NewsHome.jpg" alt="Screenshot 1" width="200"/>
-<img src="Screenshots/NewsHomeDark.jpg" alt="Screenshot 1" width="200"/>
-<img src="Screenshots/Menu.jpg" alt="Screenshot 1" width="200"/>
-<img src="Screenshots/Error_img.png" alt="Screenshot 1" width="200"/>
+<img src="Screenshots/SplashScreen.jpg" alt="Screenshot 1" width="200"/>  <img src="Screenshots/NewsHome.jpg" alt="Screenshot 1" width="200"/>
+ <img src="Screenshots/NewsHomeDark.jpg" alt="Screenshot 1" width="200"/>  <img src="Screenshots/Menu.jpg" alt="Screenshot 1" width="200"/> 
+ <img src="Screenshots/Error_img.png" alt="Screenshot 1" width="200"/>
 
 ## Download
 
 You can download the latest version of InstaShorts from the following link:
 
-[Download InstaShorts APK](https://example.com/instashorts.apk)
+[Download InstaShorts APK](https://github.com/Shams66789/InstaShorts/raw/main/APK/InstaShorts.apk)
 
 ## Installation Guide
 
